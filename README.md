@@ -17,6 +17,30 @@ Docker Certified Associate Exam Study Notes
 ** CMD - There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect. The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
 ** LABEL - The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing.
 
+Example docker file
+
+```
+# Example Dockerfile
+FROM centos:latest
+
+LABEL "maintainer"="Rhys Campbell"
+LABEL "version"="1.0"
+LABEL "description"="Just a simple docker file example"
+
+ADD test.txt /root/test.txt
+VOLUME /data
+
+RUN /bin/yum update -y
+
+CMD ["/bin/bash"]
+```
+
+Build and run with...
+
+```
+docker build -t rhys:example .
+docker run --rm -ti rhys:example
+```
 
 
 * Show the main parts of a Dockerfile
