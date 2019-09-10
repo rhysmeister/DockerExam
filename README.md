@@ -98,7 +98,7 @@ docker run --rm -ti rhys:example
   * Docker UCP requires Docker EE.
 
 * Links
-  * [Docker Stroage Drivers](https://docs.docker.com/storage/storagedriver/select-storage-driver/)
+  * [Docker Storage Drivers](https://docs.docker.com/storage/storagedriver/select-storage-driver/)
 
 ### Core Concepts
 
