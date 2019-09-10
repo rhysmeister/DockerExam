@@ -69,13 +69,19 @@ docker run --rm -ti rhys:example
 * Demonstrate the ability to upgrade the Docker engine
 * Complete setup of repo, select a storage driver, and complete installation of Docker engine on multiple platforms
 
-  * Storage Drivers
+  * Repositories
+    * [Docker Hub](https://docs.docker.com/docker-hub/repos/)
+
+  * [Storage Drivers](https://docs.docker.com/storage/storagedriver/select-storage-driver/)
     * overlay2 is the preferred storage driver, for all currently supported Linux distributions, and requires no extra configuration.
     * aufs is the preferred storage driver for Docker 18.06 and older, when running on Ubuntu 14.04 on kernel 3.13 which has no support for overlay2.
     * devicemapper is supported, but requires direct-lvm for production environments, because loopback-lvm, while zero-configuration, has very poor performance. devicemapper was the recommended storage driver for CentOS and RHEL, as their kernel version did not support overlay2. However, current versions of CentOS and RHEL now have support for overlay2, which is now the recommended driver.
     * The btrfs and zfs storage drivers are used if they are the backing filesystem (the filesystem of the host on which Docker is installed). These filesystems allow for advanced options, such as creating “snapshots”, but require more maintenance and setup. Each of these relies on the backing filesystem being configured correctly.
     * The vfs storage driver is intended for testing purposes, and for situations where no copy-on-write filesystem can be used. Performance of this storage driver is poor, and is not generally recommended for production use.
-    
+
+  * Installing Docker on multiple platforms
+    * [Docker Installation](https://docs.docker.com/install/)
+
 * Configure logging drivers (splunk, journald, etc)
 * Setup swarm, configure managers, add nodes, and setup backup schedule
 * Create and manager user and teams
