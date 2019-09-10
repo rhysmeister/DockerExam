@@ -66,8 +66,10 @@ docker run --rm -ti rhys:example
 
 ## Domain 3: Installation and Configuration (15% of exam)
 
-* A 64 Bit OS is required.
-* Docker UCP requires Docker EE.
+
+* Trivia
+  * A 64 Bit OS is required.
+  * Docker UCP requires Docker EE.
 
 ### Core Concepts
 
