@@ -100,7 +100,12 @@ docker run --rm -ti rhys:example
 ```
 
 * Setup swarm, configure managers, add nodes, and setup backup schedule
+  * [Create a Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/)
+  * [Create a Swarm Manager](https://docs.docker.com/swarm/reference/manage/)
+  * [Add Nodes to the Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/add-nodes/)
 * Create and manager user and teams
+  * [Create and Manage Users](https://docs.docker.com/v17.09/datacenter/ucp/2.2/guides/access-control/create-and-manage-users/)
+  * [Create and Manage Teams](https://docs.docker.com/v17.09/datacenter/ucp/2.2/guides/access-control/create-and-manage-teams/)
 * Interpret errors to troubleshoot installation issues without assistance
   * Common issue is only being able to run docker with root. Fix is to add user to docker group...
 ```
@@ -109,6 +114,11 @@ sudo usermod -aG docker $USER
 
 * Outline the sizing requirements prior to installation
 * Understand namespaces, cgroups, and configuration of certificates
+  * [Namespaces](https://en.wikipedia.org/wiki/Linux_namespaces)
+  * [cgroups](https://en.wikipedia.org/wiki/Cgroups)
+  * [certificates](https://docs.docker.com/ee/ucp/admin/configure/use-your-own-tls-certificates/)
+  * [Understanding Docker Internals](https://medium.com/@nagarwal/understanding-the-docker-internals-7ccb052ce9fe)
+
 * Use certificate-based client-server authentication to ensure a Docker daemon has the rights to access images on a registry
 * Consistently repeat steps to deploy Docker engine, UCP, and DTR on AWS and on premises in an HA config
 * Complete configuration of backups for UCP and DTR
