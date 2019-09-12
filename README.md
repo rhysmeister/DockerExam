@@ -87,12 +87,17 @@ docker run --rm -ti rhys:example
   * The default logging driver is json-file.
   * The default can be changed in /etc/docker/daemon.json, i.e.
 
-  ```
+```
   {
   "log-driver": "syslog"
 }
 ```
 
+  * We can change a container's default log driver when starting it...
+
+```
+  docker run -it --log-driver syslog alpine ash
+```
 
 * Setup swarm, configure managers, add nodes, and setup backup schedule
 * Create and manager user and teams
