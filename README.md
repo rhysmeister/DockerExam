@@ -83,6 +83,9 @@ docker run --rm -ti rhys:example
     * [Docker Installation](https://docs.docker.com/install/)
 
 * Configure logging drivers (splunk, journald, etc)
+  * [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
+  * The default logging driver is json-file
+
 * Setup swarm, configure managers, add nodes, and setup backup schedule
 * Create and manager user and teams
 * Interpret errors to troubleshoot installation issues without assistance
