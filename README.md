@@ -88,7 +88,7 @@ docker run --rm -ti rhys:example
   * The default can be changed in /etc/docker/daemon.json, i.e.
 
 ```
-  {
+{
   "log-driver": "syslog"
 }
 ```
@@ -102,6 +102,11 @@ docker run --rm -ti rhys:example
 * Setup swarm, configure managers, add nodes, and setup backup schedule
 * Create and manager user and teams
 * Interpret errors to troubleshoot installation issues without assistance
+  * Common issue is only being able to run docker with root. Fix is to add user to docker group...
+```
+sudo usermod -aG docker $USER
+```
+
 * Outline the sizing requirements prior to installation
 * Understand namespaces, cgroups, and configuration of certificates
 * Use certificate-based client-server authentication to ensure a Docker daemon has the rights to access images on a registry
