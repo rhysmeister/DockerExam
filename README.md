@@ -84,7 +84,15 @@ docker run --rm -ti rhys:example
 
 * Configure logging drivers (splunk, journald, etc)
   * [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
-  * The default logging driver is json-file
+  * The default logging driver is json-file.
+  * The default can be changed in /etc/docker/daemon.json, i.e.
+
+  ```
+  {
+  "log-driver": "syslog"
+}
+```
+
 
 * Setup swarm, configure managers, add nodes, and setup backup schedule
 * Create and manager user and teams
