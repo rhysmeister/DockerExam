@@ -6,7 +6,8 @@ Docker Certified Associate Exam Study Notes
 * Complete the setup of a swarm mode cluster, with managers and worker nodes
   * [Getting started with swarm mode](https://docs.docker.com/engine/swarm/swarm-tutorial/)
   * [Create a Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/)
-  
+  * [Create a Docker Swarm with Vagrant & Ansible](https://github.com/rhysmeister/DockerSwarm)
+
 * State the differences between running a container vs running a service
 * Demonstrate steps to lock a swarm cluster
 * Extend the instructions to run individual containers into running services under swarm
