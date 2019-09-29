@@ -9,7 +9,46 @@ Docker Certified Associate Exam Study Notes
   * [Create a Docker Swarm with Vagrant & Ansible](https://github.com/rhysmeister/DockerSwarm)
 
 * State the differences between running a container vs running a service
+  * docker run is used to create a standalone container.
+  * docker service create is used to create instances (called tasks) of that service running in a cluster (called swarm) of computers (called nodes). Those tasks are containers of course, but not standalone containers. In a sense a service acts as a template when instantiating tasks.
+  * [Stackoverflow Link](https://stackoverflow.com/questions/43408493/what-is-the-difference-between-docker-service-and-docker-container)
+  * [docker service is the new docker run](https://events.static.linuxfound.org/sites/events/files/slides/ContainerCon%20Berlin%20%28Goelzer%29%20-%20Upload%209-18-2016.pdf)
+  * [How services work](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/)
+
 * Demonstrate steps to lock a swarm cluster
+
+Enable locking when creating the swarm cluster.
+
+```
+docker swarm init --autolock
+```
+
+Enable locking for an existing swarm cluster.
+
+```
+docker swarm update --autolock=true
+```
+
+Unlock a swarm cluster after a restart. You will be prompted for the key.
+
+```
+docker swarm unlock
+```
+
+You can retrieve the key with the following command.
+
+```
+docker swarm unlock-key
+```
+
+Rotate the key with...
+
+```
+docker swarm unlock-key --rotate
+```
+
+[Lock your swarm to protect its encryption key](https://docs.docker.com/engine/swarm/swarm_manager_locking/)
+
 * Extend the instructions to run individual containers into running services under swarm
 * Interpret the output of "docker inspect" commands
 * Convert an application deployment into a stack file using a YAML compose file with "docker stack deploy"
