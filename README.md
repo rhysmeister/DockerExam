@@ -51,14 +51,86 @@ docker swarm unlock-key --rotate
 
 * Extend the instructions to run individual containers into running services under swarm
 * Interpret the output of "docker inspect" commands
+  * [Docker Inspect](https://docs.docker.com/engine/reference/commandline/inspect/)
+
 * Convert an application deployment into a stack file using a YAML compose file with "docker stack deploy"
 * Manipulate a running stack of services
 * Increase # of replicas
+
+Live modification
+
+```
+docker service update --replicas=20 mystack_web
+```
+
+It is probably a better idea to update the stack file and redeploy the stack...
+
+```
+docker stack  deploy --compose-file mystack-file.yml
+```
+
 * Add networks, publish ports
+
+Publish a port
+
+```
+docker service update --publish-add published=8080,target=8080 myservice
+```
+
 * Mount volumes
+
+Add a volume
+
+```
+docker service update --mount-add type=volume,source=web-vol,target=web-vol-dir myservice
+```
+
+List volumes
+
+```
+docker volume ls
+```
+
 * Illustrate running a replicated vs global service
+  * [Replicated and global services](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/#replicated-and-global-services)
+
 * Identify the steps needed to troubleshoot a service not deploying
+  * [docker service logs](https://docs.docker.com/engine/reference/commandline/service_logs/)
 * Apply node labels to demonstrate placement of tasks
+
+Add a label
+
+```
+docker node update --label-add foo worker1
+```
+
+Add multiple labels
+
+```
+docker node update --label-add foo --label-add bar worker1
+```
+
+  * [docker node update](https://docs.docker.com/engine/reference/commandline/node_update/)
+
+Add a constraint to a service
+
+```
+docker service create \
+  --name redis_2 \
+  --constraint 'node.labels.type == queue' \
+  redis:3.0.6
+```
+
+Add a placement preference
+
+```
+$ docker service create \
+  --replicas 9 \
+  --name redis_2 \
+  --placement-pref 'spread=node.labels.datacenter' \
+  redis:3.0.6
+```
+
 * Sketch how a Dockerized application communicates with legacy systems
 * Paraphrase the importance of quorum in a swarm cluster
 * Demonstrate the usage of templates with "docker service create"
