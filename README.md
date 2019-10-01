@@ -179,12 +179,74 @@ docker run --rm -ti rhys:example
 * Give examples on how to create an efficient image via a Dockerfile
 * Use CLI commands such as list, delete, prune, rmi, etc to manage images
 * Inspect images and report specific attributes using filter and format
+  * [docker image inspect](https://docs.docker.com/engine/reference/commandline/image_inspect/)
+
+Get Config section in json format
+
+```
+docker image inspect 486 --format='{{json .Config}}'
+```
+
+Get the hostname value from the Config section
+
+```
+docker image inspect 486 --format='{{.Config.Hostname}}'
+```
+
+We can also inspect containers with [docker container inspect](https://docs.docker.com/engine/reference/commandline/container_inspect/)
+
 * Demonstrate tagging an image
+  * [docker image tag](https://docs.docker.com/engine/reference/commandline/image_tag/)
+
 * Utilize a registry to store an image
 * Display layers of a Docker image
 * Apply a file to create a Docker image
 * Modify an image to a single layer
+
+This can be acheived in two ways...
+
+1. Build image with squash option (current experimental featire that must be enable)
+
+```
+docker build --squash -t rhys:new .
+```
+
+Note layers in new image...
+
+```
+docker image history rhys:new
+```
+
+There's only one (note merge message and <missing> flags)....
+
+```
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+7b348eee45aa        14 seconds ago                                                      87.1MB              merge sha256:ecb208515985bac886178ae2244bdefda65bd528734ce75a38213da6cebe00d2 to sha256:a2a15febcdf362f6115e801d37b5e60d6faaeedcb9896155e5fe9d754025be12
+<missing>           4 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "\"/u…   0B                  
+<missing>           4 weeks ago         /bin/sh -c apt-get -y install vim               0B                  
+<missing>           4 weeks ago         /bin/sh -c apt-get update -y                    0B                  
+<missing>           4 weeks ago         /bin/sh -c #(nop) ADD file:3e06daef2777a9a4a…   0B                  
+<missing>           4 weeks ago         /bin/sh -c #(nop)  MAINTAINER rhys.james.cam…   0B                  
+<missing>           6 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
+<missing>           6 weeks ago         /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B                  
+<missing>           6 weeks ago         /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B                
+<missing>           6 weeks ago         /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB               
+<missing>           6 weeks ago         /bin/sh -c #(nop) ADD file:c477cb0e95c56b51e…   63.2MB
+```
+
+2. The second exports an image from a running container
+
+```
+docker container export my_container > my_container.tar
+
 * Describe how image layers work
+
+View the layers of an image...
+
+```
+docker image history rhys:latest
+```
+
 * Deploy a registry (not architect)
 * Configure a registry
 * Log into a registry
