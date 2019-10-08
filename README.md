@@ -200,6 +200,8 @@ We can also inspect containers with [docker container inspect](https://docs.dock
 
 * Utilize a registry to store an image
 * Display layers of a Docker image
+  * [docker history](https://docs.docker.com/engine/reference/commandline/history/)
+  * [Digging into Docker layers](https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612)
 * Apply a file to create a Docker image
 * Modify an image to a single layer
 
@@ -238,6 +240,13 @@ IMAGE               CREATED             CREATED BY                              
 
 ```
 docker container export my_container > my_container.tar
+```
+
+This can then be imported into docker
+
+```
+docker image import my_container.tar
+```
 
 * Describe how image layers work
 
@@ -248,15 +257,76 @@ docker image history rhys:latest
 ```
 
 * Deploy a registry (not architect)
+
+[Deploy a registry server](https://docs.docker.com/registry/deploying/)
+
+```
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
+
+[Docker Trusted Registry overview](https://docs.docker.com/ee/dtr/)
+
 * Configure a registry
 * Log into a registry
+
+Login to docker hub
+
+```
+docker login
+```
+
+Login to docker registry container (must be previously deployed)
+
+```
+doccker login localhost:5000
+```
+
 * Utilize search in a registry
+  * [docker search](https://docs.docker.com/engine/reference/commandline/search/)
+
+Search for ubuntu images
+
+```
+docker search ubuntu
+```
+
+Ubuntu images with 5 or more stars
+
+```
+docker search ubuntu --filter=stars=5
+```
+
+Limit to 5 results
+
+```
+docker search ubuntu --filter=stars=5 --limit=5
+```
+
+Official centos images
+
+```
+docker search centos --filter "is-official=true"
+```
+
+Official centos images with 50 or more stars
+
+```
+docker search centos --filter "is-official=true" --filter "stars=50"
+```
+
 * Tag an image
+  * [docker tag](https://docs.docker.com/engine/reference/commandline/tag/)
+
 * Push an image to a registry
+  * [docker push](https://docs.docker.com/engine/reference/commandline/push/)
+
 * Sign an image in a registry
 * Pull an image from a registry
+  * [docker pull](https://docs.docker.com/engine/reference/commandline/pull/)
+
 * Describe how image deletion works
 * Delete an image from a registry
+  * [docker image rm](https://docs.docker.com/engine/reference/commandline/image_rm/)
 
 ## Domain 3: Installation and Configuration (15% of exam)
 
@@ -337,3 +407,14 @@ sudo usermod -aG docker $USER
 ## Domain 5: Security (15% of exam)
 
 ## Domain 6: Storage and Volumes (10% of exam)
+
+* State which graph driver should be used on which OS
+* Demonstrate how to configure devicemapper
+* Compare object storage to block storage, and explain which one is preferable when available
+  * [Object Storage versus Block Storage: Understanding the Technology Differences](https://www.druva.com/blog/object-storage-versus-block-storage-understanding-technology-differences/)
+  * [An Introduction to Storage for Docker Enterprise](https://success.docker.com/article/an-introduction-to-storage-solutions-for-docker-enterprise)
+  * [Block Storage, Object Storage, and File Systems: What They Mean for Containers](https://rancher.com/block-object-file-storage-containers/)
+* Summarize how an application is composed of layers and where those layers reside on the filesystem
+* Describe how volumes are used with Docker for persistent storage
+* Identify the steps you would take to clean up unused images on a filesystem, also on DTR
+* Demonstrate how storage can be used across cluster nodes
