@@ -410,11 +410,40 @@ sudo usermod -aG docker $USER
 
 * State which graph driver should be used on which OS
 * Demonstrate how to configure devicemapper
+  * [Device Mapper Storage Driver](https://docs.docker.com/storage/storagedriver/device-mapper-driver/)
 * Compare object storage to block storage, and explain which one is preferable when available
   * [Object Storage versus Block Storage: Understanding the Technology Differences](https://www.druva.com/blog/object-storage-versus-block-storage-understanding-technology-differences/)
   * [An Introduction to Storage for Docker Enterprise](https://success.docker.com/article/an-introduction-to-storage-solutions-for-docker-enterprise)
   * [Block Storage, Object Storage, and File Systems: What They Mean for Containers](https://rancher.com/block-object-file-storage-containers/)
 * Summarize how an application is composed of layers and where those layers reside on the filesystem
 * Describe how volumes are used with Docker for persistent storage
+  * Volumes are easier to back up or migrate than bind mounts.
+  * You can manage volumes using Docker CLI commands or the Docker API.
+  * Volumes work on both Linux and Windows containers.
+  * Volumes can be more safely shared among multiple containers.
+  * Volume drivers let you store volumes on remote hosts or cloud providers, to encrypt the contents of volumes, or to add other functionality.
+  * New volumes can have their content pre-populated by a container.
+  * [Docker Volumes](https://docs.docker.com/storage/volumes/)
+  * [Managing Persistence for Docker Containers](https://thenewstack.io/methods-dealing-container-storage/)
+  * [Additional: Bind Mounts](https://docs.docker.com/storage/bind-mounts/)
 * Identify the steps you would take to clean up unused images on a filesystem, also on DTR
+
+Prune dangling images
+
+```bash
+docker image prune
+```
+
+Prune unused volumes
+
+```bash
+docker volume prune
+```
+
+Prune all stopped containers, unused networks, dangling images and all build caches
+
+```bash
+docker system prune
+```
+
 * Demonstrate how storage can be used across cluster nodes
