@@ -404,6 +404,27 @@ sudo usermod -aG docker $USER
 
 ## Domain 4: Networking (15% of exam)
 
+[Docker Networks](https://success.docker.com/article/networking)
+
+* Create a Docker bridge network for a developer to use for their containers
+* Troubleshoot container and engine logs to understand a connectivity issue between containers
+* Publish a port so that an application is accessible externally
+* Identify which IP and port a container is externally accessible on
+* Describe the different types and use cases for the built-in network drivers
+  * bridge: The default network driver. If you don’t specify a driver, this is the type of network you are creating. Bridge networks are usually used when your applications run in standalone containers that need to communicate. See bridge networks.
+  * host: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See use the host network.
+  * overlay: Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other. You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between these containers. See overlay networks.
+  * macvlan: Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker daemon routes traffic to containers by their MAC addresses. Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack. See Macvlan networks.
+  * none: For this container, disable all networking. Usually used in conjunction with a custom network driver. none is not available for swarm services. See disable container networking.
+  * Network plugins: You can install and use third-party network plugins with Docker. These plugins are available from Docker Hub or from third-party vendors. See the vendor’s documentation for installing and using a given network plugin.
+  * [Docket native networking drivers](https://www.docker.com/blog/understanding-docker-networking-drivers-use-cases/)
+* Understand the Container Network Model and how it interfaces with the Docker engine and network and IPAM drivers
+* Configure Docker to use external DNS
+* Use Docker to load balance HTTP/HTTPs traffic to an application (Configure L7 load balancing with Docker EE)
+* Understand and describe the types of traffic that flow between the Docker engine, registry, and UCP controllers
+* Deploy a service on a Docker overlay network
+* Describe the difference between "host" and "ingress" port publishing mode
+
 ## Domain 5: Security (15% of exam)
 
 ## Domain 6: Storage and Volumes (10% of exam)
