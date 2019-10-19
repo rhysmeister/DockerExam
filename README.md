@@ -407,8 +407,27 @@ sudo usermod -aG docker $USER
 [Docker Networks](https://success.docker.com/article/networking)
 
 * Create a Docker bridge network for a developer to use for their containers
+
+```bash
+docker network create --driver bridge my-custom-net
+```
+[Use bridge networks](https://docs.docker.com/network/bridge/)
+
 * Troubleshoot container and engine logs to understand a connectivity issue between containers
 * Publish a port so that an application is accessible externally
+
+Publish a port 8080 on the host to 80 on the container
+
+```bash
+docker container run -dit --rm -p 8080:80 nginx
+```
+
+Publish ports specified in the docker file with a random high port
+
+```bash
+docker container run -dit --rm -P nginx
+```
+
 * Identify which IP and port a container is externally accessible on
 * Describe the different types and use cases for the built-in network drivers
   * bridge: The default network driver. If you don’t specify a driver, this is the type of network you are creating. Bridge networks are usually used when your applications run in standalone containers that need to communicate. See bridge networks.
@@ -421,8 +440,38 @@ sudo usermod -aG docker $USER
 * Understand the Container Network Model and how it interfaces with the Docker engine and network and IPAM drivers
 * Configure Docker to use external DNS
 * Use Docker to load balance HTTP/HTTPs traffic to an application (Configure L7 load balancing with Docker EE)
+
+[Use a Load Balancer](https://docs.docker.com/ee/ucp/admin/configure/join-nodes/use-a-load-balancer/)
+[Docker Swarm Load Balancing with NGINX and NGINX Plus](https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/)
+[How to get started with load balancing Docker Swarm mode](https://upcloud.com/community/tutorials/load-balancing-docker-swarm-mode/)
+
 * Understand and describe the types of traffic that flow between the Docker engine, registry, and UCP controllers
 * Deploy a service on a Docker overlay network
+
+Create a new overlay network
+
+```bash
+docker network create --driver overlay my-overlay-network
+```
+
+Create a service on this new network using the nginy container
+
+```bash
+docker service create --network=my-overlay-network --name=rhys1 --replicas=6 nginx
+```
+
+List the newly created service
+
+```bash
+docker service ls
+```
+
+Inspect the newly create service
+
+```bash
+docker service inspect rhys1
+```
+
 * Describe the difference between "host" and "ingress" port publishing mode
 
 ## Domain 5: Security (15% of exam)
