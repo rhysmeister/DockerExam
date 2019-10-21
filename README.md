@@ -429,6 +429,17 @@ docker container run -dit --rm -P nginx
 ```
 
 * Identify which IP and port a container is externally accessible on
+
+```bash
+docker container port focused_davinci
+```
+
+```
+80/tcp -> 0.0.0.0:32768
+```
+
+The inspect command will also show this information.
+
 * Describe the different types and use cases for the built-in network drivers
   * bridge: The default network driver. If you don’t specify a driver, this is the type of network you are creating. Bridge networks are usually used when your applications run in standalone containers that need to communicate. See bridge networks.
   * host: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See use the host network.
@@ -446,6 +457,7 @@ docker container run -dit --rm -P nginx
 [How to get started with load balancing Docker Swarm mode](https://upcloud.com/community/tutorials/load-balancing-docker-swarm-mode/)
 
 * Understand and describe the types of traffic that flow between the Docker engine, registry, and UCP controllers
+  * [Docker EE Architecture](https://docs.docker.com/ee/docker-ee-architecture/)
 * Deploy a service on a Docker overlay network
 
 Create a new overlay network
