@@ -205,9 +205,9 @@ We can also inspect containers with [docker container inspect](https://docs.dock
 * Apply a file to create a Docker image
 * Modify an image to a single layer
 
-This can be acheived in two ways...
+This can be achieved in two ways...
 
-1. Build image with squash option (current experimental featire that must be enable)
+1. Build image with squash option (current experimental feature that must be enabled)
 
 ```
 docker build --squash -t rhys:new .
@@ -487,6 +487,19 @@ docker service inspect rhys1
 * Describe the difference between "host" and "ingress" port publishing mode
 
 ## Domain 5: Security (15% of exam)
+
+* Describe the process of signing an image
+* Demonstrate that an image passes a security scan
+* Enable Docker Content Trust
+* Configure RBAC in UCP
+* Integrate UCP with LDAP/AD
+* Demonstrate creation of UCP client bundles
+* Describe default engine security
+* Describe swarm default security
+* Describe MTLS
+* Identity roles
+* Describe the difference between UCP workers and managers
+* Describe process to use external certificates with UCP and DTR
 
 ## Domain 6: Storage and Volumes (10% of exam)
 
