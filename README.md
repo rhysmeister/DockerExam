@@ -56,8 +56,16 @@ docker swarm unlock-key --rotate
 * Convert an application deployment into a stack file using a YAML compose file with "docker stack deploy"
 * Manipulate a running stack of services
 * Increase # of replicas
+  * [docker scale](https://docs.docker.com/engine/reference/commandline/service_scale/)
 
 Live modification
+
+```bash
+docker service scale frontend=50
+docker service scale backend=10 proxy=5
+```
+
+or
 
 ```
 docker service update --replicas=20 mystack_web
@@ -488,9 +496,17 @@ docker service inspect rhys1
 
 ## Domain 5: Security (15% of exam)
 
+[Docker Security](https://docs.docker.com/engine/security/security/)
+
 * Describe the process of signing an image
 * Demonstrate that an image passes a security scan
 * Enable Docker Content Trust
+  * [Content trust in Docker](https://docs.docker.com/engine/security/trust/content_trust/)
+
+```bash
+export DOCKER_CONTENT_TRUST=1
+```
+
 * Configure RBAC in UCP
 * Integrate UCP with LDAP/AD
 * Demonstrate creation of UCP client bundles
@@ -499,6 +515,12 @@ docker service inspect rhys1
 * Describe MTLS
 * Identity roles
 * Describe the difference between UCP workers and managers
+  * Swarm Managers
+    * Maintain cluster state.
+    * Schedule services.
+    * Serve as swarm http endpoints.
+  * Swarm Workers
+    * Sole purpose is to execute container workloads.
 * Describe process to use external certificates with UCP and DTR
 
 ## Domain 6: Storage and Volumes (10% of exam)
