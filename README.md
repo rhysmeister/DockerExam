@@ -54,6 +54,8 @@ docker swarm unlock-key --rotate
   * [Docker Inspect](https://docs.docker.com/engine/reference/commandline/inspect/)
 
 * Convert an application deployment into a stack file using a YAML compose file with "docker stack deploy"
+  * [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/)
+  * YouTube - [What is Docker Compose | How to create docker compose file | How to use Compose](https://www.youtube.com/watch?v=HUpIoF_conA)
 * Manipulate a running stack of services
 * Increase # of replicas
   * [docker scale](https://docs.docker.com/engine/reference/commandline/service_scale/)
