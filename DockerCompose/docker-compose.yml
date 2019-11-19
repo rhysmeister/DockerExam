@@ -3,9 +3,42 @@
   services:
 
     web:
-      image: nginx
+      #image: nginx
+      build:
+        dockerfile: './custom_nginx'
+        context: '.'
       ports:
         - 8080:80
-
+      volumes:
+        - web_vol:/usr/share/nginx/html
+      networks:
+        - demo_app
+      restart: always
+      depends_on:
+        - db
     db:
-      image: mariadb
+      build:
+        dockerfile: './custom_mariadb'
+        context: '.'
+      environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: ukpostcodes
+        MYSQL_USER: postcodes
+        MYSQL_PASSWORD: secret
+      ports:
+        - 3306:3306
+      volumes:
+        - mysql_vol:/var/lib/mysql
+      networks:
+        - demo_app
+      restart: always
+      #command: >
+      #  mysql -u root -psecret -h 127.0.0.1 ukpostcodes < /tmp/table.sql
+      #  unzip -p /tmp/ukpostcodesmysql.zip | mysql -u root -psecret ukpostcodes
+
+  networks:
+    demo_app:
+
+  volumes:
+    web_vol:
+    mysql_vol:
