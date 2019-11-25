@@ -29,7 +29,6 @@ def index():
       for result in rv:
           content = {'id': result[0], 'postcode': result[1], 'longitude': result[2], 'latitude': result[2]}
           payload.append(content)
-          content = {}
       return jsonify(payload)
 
   else:
