@@ -2,6 +2,19 @@
   version: "3"
   services:
 
+    flask:
+        build:
+          dockerfile: './custom_nginx'
+          context: '.'
+        environment:
+            - FLASK_APP=/usr/src/app/project/app.py
+        command: flask run --host=0.0.0.0
+        ports:
+          - 5000:5000
+        dns:
+          - 127.0.0.11
+        networks:
+          - demo_app
     web:
       #image: nginx
       build:
@@ -13,9 +26,13 @@
         - web_vol:/usr/share/nginx/html
       networks:
         - demo_app
+      command: nginx -g 'daemon off;'
       restart: always
+      dns:
+        - 127.0.0.11
       depends_on:
         - db
+        - flask
     db:
       build:
         dockerfile: './custom_mariadb'
@@ -32,9 +49,8 @@
       networks:
         - demo_app
       restart: always
-      #command: >
-      #  mysql -u root -psecret -h 127.0.0.1 ukpostcodes < /tmp/table.sql
-      #  unzip -p /tmp/ukpostcodesmysql.zip | mysql -u root -psecret ukpostcodes
+      dns:
+        - 127.0.0.11
 
   networks:
     demo_app:
