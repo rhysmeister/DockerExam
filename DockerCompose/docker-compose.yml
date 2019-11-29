@@ -3,10 +3,10 @@
   services:
 
     flask:
-        hostname: dockercompose_flask_1
         build:
           dockerfile: './custom_nginx'
           context: '.'
+        image: dockercompose_flask
         environment:
             - FLASK_APP=/usr/src/app/project/app.py
         command: flask run --host=0.0.0.0
@@ -15,10 +15,10 @@
         networks:
           - demo_app
     web:
-      hostname: dockercompose_web_1
       build:
         dockerfile: './custom_nginx'
         context: '.'
+      image: dockercompose_web
       ports:
         - 8080:80
       volumes:
@@ -31,10 +31,10 @@
         - db
         - flask
     db:
-      hostname: dockercompose_db_1
       build:
         dockerfile: './custom_mariadb'
         context: '.'
+      image: dockercompose_db
       environment:
         MYSQL_ROOT_PASSWORD: secret
         MYSQL_DATABASE: ukpostcodes

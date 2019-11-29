@@ -22,7 +22,7 @@ def index():
   postcode = urllib.parse.unquote(request.args.get("postcode"))
   valid_postcode = re.compile(r"([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})")
 
-  MYSQL_HOST = "dockercompose_db_1"
+  MYSQL_HOST = "db"
   MYSQL_USER = "root"
   MYSQL_PASSWORD = "secret"
   if postcode is not None:

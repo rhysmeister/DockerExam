@@ -57,6 +57,49 @@ docker swarm unlock-key --rotate
   * [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/)
   * YouTube - [What is Docker Compose | How to create docker compose file | How to use Compose](https://www.youtube.com/watch?v=HUpIoF_conA)
 * Manipulate a running stack of services
+
+Deploy a stack from a compose file
+
+```
+docker stack deploy -c docker-compose.yml mystack
+```
+
+List running stacks
+
+```
+docker stack ls
+``
+
+```
+NAME                SERVICES            ORCHESTRATOR
+mystack             3                   Swarm
+```
+
+List the tasks in the stack
+
+```
+docker stack ps mystack
+```
+
+List services in a stack
+
+```
+docker stack services mystack
+```
+
+```
+ID                  NAME                MODE                REPLICAS            IMAGE                 PORTS
+9m7vvqvc10fw        mystack_flask       replicated          0/1                 custom_nginx:latest   *:5000->5000/tcp
+mxi86w2byuif        mystack_db          replicated          0/1                 custom_nginx:latest   *:3306->3306/tcp
+wvv6ubaws9tn        mystack_web         replicated          0/1                 custom_nginx:latest   *:8080->80/tcp
+```
+
+Remove a stack
+
+```
+docker stack rm mystack
+```
+
 * Increase # of replicas
   * [docker scale](https://docs.docker.com/engine/reference/commandline/service_scale/)
 
