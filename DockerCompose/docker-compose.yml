@@ -14,6 +14,8 @@
           - 5000:5000
         networks:
           - demo_app
+        deploy:
+          replicas: 3
     web:
       build:
         dockerfile: './custom_nginx'
@@ -30,6 +32,8 @@
       depends_on:
         - db
         - flask
+      deploy:
+        replicas: 3
     db:
       build:
         dockerfile: './custom_mariadb'
@@ -47,6 +51,8 @@
       networks:
         - demo_app
       restart: always
+      deploy:
+        replicas: 3
 
   networks:
     demo_app:
