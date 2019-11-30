@@ -24,10 +24,10 @@ Access a running container...
 docker exec -ti dockercompose_web_1 sh
 ```
 
-Execute a call against the bundled postcode api
+Execute a call against the bundled postcode api. Spaces must be included as %20
 
 ```
-curl http://localhost:80?postcode=sl71uq
+curl http://localhost:80?postcode=sl7%201uq
 ```
 
 Check logs for a container
@@ -42,6 +42,23 @@ Deploy the compose file as a stack
 docker stack deploy -c docker-compose.yml mystack
 ```
 
+Scale the db service
+
+```
+docker service scale mystack_db=3
+```
+
+Scale the remaining services
+
+```
+docker service scale mystack_flask=3 mystack_web=3
+```
+
+Return stack to one instance per service
+
+```
+docker service scale mystack_db=1 mystack_web=1 mystack_flask=1
+```
 
 # Mistakes made during this project
 

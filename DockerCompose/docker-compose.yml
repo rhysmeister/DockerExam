@@ -42,8 +42,8 @@
         MYSQL_PASSWORD: secret
       ports:
         - 3306:3306
-      volumes:
-        - mysql_vol:/var/lib/mysql
+      #volumes:
+      #  - mysql_vol:/var/lib/mysql
       networks:
         - demo_app
       restart: always
