@@ -68,7 +68,7 @@ List running stacks
 
 ```
 docker stack ls
-``
+```
 
 ```
 NAME                SERVICES            ORCHESTRATOR
