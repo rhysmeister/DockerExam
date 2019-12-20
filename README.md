@@ -186,7 +186,17 @@ $ docker service create \
 
 * Sketch how a Dockerized application communicates with legacy systems
 * Paraphrase the importance of quorum in a swarm cluster
+  * [Importance of quorum in a Swarm Cluster](https://medium.com/@kasunmaduraeng/importance-of-quorum-in-a-swarm-cluster-c67ae9bb2d6f)
+
+
 * Demonstrate the usage of templates with "docker service create"
+  * [docker service create](https://docs.docker.com/engine/reference/commandline/service_create/)
+
+```
+docker service create --name hosttempl \
+                        --hostname="{{.Node.ID}}-{{.Service.Name}}"\
+                         busybox top
+```
 
 ## Domain 2: Image Creation, Management and Registry (20% of exam)
 
@@ -231,13 +241,36 @@ docker run --rm -ti rhys:example
 * Show the main parts of a Dockerfile
 * Give examples on how to create an efficient image via a Dockerfile
 * Use CLI commands such as list, delete, prune, rmi, etc to manage images
+
+```
+docker image
+
+Usage:	docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+```
+
 * Inspect images and report specific attributes using filter and format
   * [docker image inspect](https://docs.docker.com/engine/reference/commandline/image_inspect/)
 
 Get Config section in json format
 
 ```
-docker image inspect 486 --format='{{json .Config}}'
+docker image inspect 486 --format='{{json .Config}}' | python -m json.tool
 ```
 
 Get the hostname value from the Config section
@@ -251,10 +284,24 @@ We can also inspect containers with [docker container inspect](https://docs.dock
 * Demonstrate tagging an image
   * [docker image tag](https://docs.docker.com/engine/reference/commandline/image_tag/)
 
+```
+docker image tag rhys2 rhyscampbell/rhys2:latest
+```
+
 * Utilize a registry to store an image
+
+```
+docker image push rhyscampbell/rhys2:latest
+```
+
 * Display layers of a Docker image
   * [docker history](https://docs.docker.com/engine/reference/commandline/history/)
   * [Digging into Docker layers](https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612)
+
+```
+docker image history rhys2
+```
+
 * Apply a file to create a Docker image
 * Modify an image to a single layer
 
@@ -302,6 +349,8 @@ docker image import my_container.tar
 ```
 
 * Describe how image layers work
+  * [Digging into Docker Layers](https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612)
+  * [The Anatomy of a container](https://www.slideshare.net/jpetazzo/anatomy-of-a-container-namespaces-cgroups-some-filesystem-magic-linuxcon)
 
 View the layers of an image...
 
