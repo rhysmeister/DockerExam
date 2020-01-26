@@ -50,6 +50,7 @@ docker swarm unlock-key --rotate
 [Lock your swarm to protect its encryption key](https://docs.docker.com/engine/swarm/swarm_manager_locking/)
 
 * Extend the instructions to run individual containers into running services under swarm
+  * [Deploy a Service](https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/)
 * Interpret the output of "docker inspect" commands
   * [Docker Inspect](https://docs.docker.com/engine/reference/commandline/inspect/)
 
