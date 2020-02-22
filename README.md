@@ -669,3 +669,13 @@ docker system prune
 ```
 
 * Demonstrate how storage can be used across cluster nodes
+
+Notes
+======
+
+Can access the Docker Desktop vm on a Mac with...
+
+```
+screen
+~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+```
